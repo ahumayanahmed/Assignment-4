@@ -92,3 +92,53 @@ status:"all"
 
 ];
 
+let currentTab = "all";
+
+const jobsContainer = document.getElementById("jobsContainer");
+const totalCount = document.getElementById("totalCount");
+const interviewCount = document.getElementById("interviewCount");
+const rejectedCount = document.getElementById("rejectedCount");
+const sectionCount = document.getElementById("sectionCount");
+
+
+
+function renderJobs(){
+
+jobsContainer.innerHTML = "";
+
+let filteredJobs = jobsData.filter(job=>{
+
+if(currentTab==="all") return true;
+
+return job.status === currentTab;
+
+});
+
+
+sectionCount.innerText = filteredJobs.length + " jobs";
+
+
+if(filteredJobs.length === 0){
+
+jobsContainer.innerHTML = `
+<div class="bg-white border rounded-xl shadow-sm py-12 text-center">
+
+<img src="img/folder-regular-full.svg"
+class="w-20 mx-auto mb-4 opacity-60">
+
+<h3 class="text-lg font-semibold text-gray-700">
+No jobs available
+</h3>
+
+<p class="text-gray-400 text-sm">
+Check back soon for new job opportunities
+</p>
+
+</div>
+`;
+
+updateCounts();
+return;
+}
+
+
