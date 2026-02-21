@@ -142,3 +142,113 @@ return;
 }
 
 
+filteredJobs.forEach(job=>{
+
+let badge = "";
+
+if(job.status==="all"){
+
+badge = `
+<span class="text-xs  text-blue-700 px-2 py-1 rounded">
+
+</span>
+`;
+
+}
+
+else if(job.status==="interview"){
+
+badge = `
+<span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
+INTERVIEW
+</span>
+`;
+
+}
+
+else if(job.status==="rejected"){
+
+badge = `
+<span class="text-xs bg-red-100 text-red-700 px-2 py-1 rounded">
+REJECTED
+</span>
+`;
+
+}
+
+
+const card = document.createElement("div");
+
+card.className =
+"bg-white border rounded-xl shadow-sm p-5 hover:shadow-md transition";
+
+
+card.innerHTML = `
+
+<div class="flex justify-between">
+
+<div>
+
+<h3 class="font-semibold text-gray-800">
+${job.company}
+</h3>
+
+<p class="text-gray-600 text-sm">
+${job.position}
+</p>
+
+<p class="text-gray-400 text-sm mt-1">
+${job.location} • ${job.type} • ${job.salary}
+</p>
+
+<div class="mt-2">
+${badge}
+</div>
+
+</div>
+
+
+<button onclick="deleteJob(${job.id})"
+        class="p-2 rounded-full hover:bg-gray-100">
+  <img src="img/trash-can-regular-full.svg" alt="Delete"
+       class="w-5 h-5"/>
+</button>
+
+</div>
+
+
+<p class="text-gray-600 text-sm mt-3">
+${job.description}
+</p>
+
+
+<div class="flex gap-3 mt-4">
+
+<button onclick="setStatus(${job.id},'interview')"
+class="px-4 py-1 text-sm border border-green-600 text-green-600 rounded hover:bg-green-50">
+
+INTERVIEW
+
+</button>
+
+
+<button onclick="setStatus(${job.id},'rejected')"
+class="px-4 py-1 text-sm border border-red-600 text-red-600 rounded hover:bg-red-50">
+
+REJECTED
+
+</button>
+
+</div>
+
+`;
+
+
+
+});
+
+}
+
+
+
+renderJobs();
