@@ -265,7 +265,53 @@ renderJobs();
 }
 
 
+function deleteJob(id){
 
+const index = jobsData.findIndex(job=>job.id===id);
+
+jobsData.splice(index,1);
+
+renderJobs();
+
+}
+
+
+function updateCounts(){
+
+totalCount.innerText = jobsData.length;
+
+interviewCount.innerText =
+jobsData.filter(job=>job.status==="interview").length;
+
+rejectedCount.innerText =
+jobsData.filter(job=>job.status==="rejected").length;
+
+}
+
+
+document.querySelectorAll(".tab").forEach(tab=>{
+
+tab.addEventListener("click",function(){
+
+document.querySelectorAll(".tab").forEach(btn=>{
+
+btn.classList.remove("bg-blue-600","text-white");
+
+btn.classList.add("bg-gray-200");
+
+});
+
+this.classList.remove("bg-gray-200");
+
+this.classList.add("bg-blue-600","text-white");
+
+currentTab = this.dataset.tab;
+
+renderJobs();
+
+});
+
+});
 
 
 
