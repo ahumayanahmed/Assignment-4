@@ -243,11 +243,19 @@ REJECTED
 
 `;
 
-
+jobsContainer.appendChild(card);
 
 });
 
+
+updateCounts();
+
 }
+
+
+
+
+
 
 
 
