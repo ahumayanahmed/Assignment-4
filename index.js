@@ -254,6 +254,16 @@ updateCounts();
 
 
 
+function setStatus(id,status){
+
+const job = jobsData.find(job=>job.id===id);
+
+job.status = status;
+
+renderJobs();
+
+}
+
 
 
 
